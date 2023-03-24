@@ -1,7 +1,7 @@
 require("dotenv").config();
 
 const { Pact } = require("@pact-foundation/pact");
-const { version: consumerVersion } = require("../../package.json");
+const { version: consumerVersion, name: consumerName } = require("../../package.json");
 
 // The class / package in our app that sends requests to the provider.
 const fetchUtilities = require("../app/fetchUtilities");
@@ -11,9 +11,7 @@ const sayHello = require("./interactions/sayHello");
 
 const {
     PACT_BROKER_TOKEN,
-    PACT_BROKER,
-    PACT_CONSUMER_NAME,
-    PACT_PROVIDER_NAME
+    PACT_BROKER
 } = process.env;
 
 const pactFolder = `${__dirname}/pactfiles`;
@@ -21,8 +19,8 @@ const pactFolder = `${__dirname}/pactfiles`;
 // Create provider mock on localhost:8081.
 const provider = new Pact({
     dir: pactFolder,
-    consumer: PACT_CONSUMER_NAME,
-    provider: PACT_PROVIDER_NAME,
+    consumer: consumerName,
+    provider: "pact-demo-api1",
     log: `${__dirname}/test_log.txt`
 });
 
@@ -68,4 +66,4 @@ describe("Root url", () => {
 
         // No need to 'assert' anything - the pact mock will fail if the above test fails.
     });
-});
+})
