@@ -7,7 +7,7 @@ const { version: consumerVersion } = require("../../package.json");
 const fetchUtilities = require("../app/fetchUtilities");
 
 // Our interaction definitions.
-const getItems = require("./interactions/getItems");
+const sayHello = require("./interactions/sayHello");
 
 const {
     PACT_BROKER_TOKEN,
@@ -34,7 +34,7 @@ const opts = {
     publishVerificationResult: true
 };
 
-describe("Items", () => {
+describe("Root url", () => {
     let mockProviderUrl;
 
     beforeAll(async () => {
@@ -65,12 +65,12 @@ describe("Items", () => {
     });
 
     // Test each endpoint our consumer app uses.
-    test("/items", async () => {
+    test("/", async () => {
         // Add our expected interaction (Pact expects all interactions to be tested)
-        provider.addInteraction(getItems);
+        provider.addInteraction(sayHello);
 
         // Run the relevant consumer app 'fetch' function.
-        await fetchUtilities(mockProviderUrl).getItems(1);
+        await fetchUtilities(mockProviderUrl).sayHello();
 
         // No need to 'assert' anything - the pact mock will fail if the above test fails.
     });

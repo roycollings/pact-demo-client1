@@ -17,6 +17,21 @@
         },
         "status": 200
       }
+    },
+    {
+      "description": "a request to say hello",
+      "providerState": "Saying hello",
+      "request": {
+        "method": "GET",
+        "path": "/"
+      },
+      "response": {
+        "body": {},
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "status": 200
+      }
     }
   ],
   "metadata": {
