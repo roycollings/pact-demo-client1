@@ -43,12 +43,6 @@ describe("Root url", () => {
         mockProviderUrl = `http://localhost:${port}`;
     });
 
-    beforeEach(
-        async () =>
-            // Clear out previous interactions.
-            await provider.removeInteractions()
-    );
-
     afterEach(
         async () =>
             // Pact checks that the request matched the interaction definition.
