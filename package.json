@@ -1,0 +1,20 @@
+{
+  "name": "pact-demo-client1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@pact-foundation/pact": "^11.0.2",
+    "dotenv": "^16.0.3",
+    "isomorphic-fetch": "^3.0.0",
+    "jest": "^29.5.0"
+  }
+}
