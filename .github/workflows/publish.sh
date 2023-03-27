@@ -3,7 +3,7 @@
 MISSING=()
 [ ! "$PACT_BROKER_BASE_URL" ] && MISSING+=("PACT_BROKER_BASE_URL")
 [ ! "$PACT_BROKER_TOKEN" ] && MISSING+=("PACT_BROKER_TOKEN")
-[ ! "$version" ] && MISSING+=("version")
+[ ! "$VERSION" ] && MISSING+=("VERSION")
 
 if [ ${#MISSING[@]} -gt 0 ]; then
   echo "ERROR: The following environment variables are not set:"
@@ -11,13 +11,13 @@ if [ ${#MISSING[@]} -gt 0 ]; then
   exit 1
 fi
 
-branch=$(git rev-parse --abbrev-ref HEAD)
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
 echo """
 PACT_BROKER_BASE_URL: $PACT_BROKER_BASE_URL
-version: $version
+VERSION: $VERSION
 pactfiles: $pactfiles
-branch: $branch
+BRANCH: $BRANCH
 """
 
 docker run --rm \
@@ -27,5 +27,5 @@ docker run --rm \
   -e PACT_BROKER_TOKEN=$PACT_BROKER_TOKEN \
   pactfoundation/pact-cli:latest \
   publish ./src/pact/pactfiles \
-  --consumer-app-version $version \
-  --branch $branch
+  --consumer-app-version $VERSION \
+  --branch $BRANCH
