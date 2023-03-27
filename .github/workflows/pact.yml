@@ -1,0 +1,41 @@
+name: "pactflow"
+
+on:
+  push:
+    branches-ignore:
+      - "master"
+
+  pull_request:
+    types:
+      - "closed"
+
+env:
+  PACT_BROKER_BASE_URL: ${{ secrets.PACT_BROKER_BASE_URL }}
+  PACT_BROKER_TOKEN: ${{ secrets.PACT_BROKER_TOKEN }}
+  pactfiles: ./src/pact/pactfiles
+  APPLICATION_NAME: "pact-demo-client1"
+  VERSION: 1.0.0
+  ENVIRONMENT: test
+
+jobs:
+  test-release:
+    if: github.event.pull_request.merged != true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: ./.github/workflows/setVersion.sh
+      - uses: pactflow/actions/publish-pact-files@v1.0.1
+        env:
+          pactfiles: ./src/pact/pactfiles
+      - name: Check I can deploy
+        if: success()
+        run: ./.github/workflows/can-i-deploy.sh
+
+  deploy-pact-file:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Deploy
+        if: success()
+        run: ./.github/workflows/deploy.sh

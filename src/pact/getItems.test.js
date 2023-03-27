@@ -1,7 +1,7 @@
 require("dotenv").config();
 
 const { Pact } = require("@pact-foundation/pact");
-const { version: consumerVersion } = require("../../package.json");
+const { version: consumerVersion, name: consumerName } = require("../../package.json");
 
 // The class / package in our app that sends requests to the provider.
 const fetchUtilities = require("../app/fetchUtilities");
@@ -11,9 +11,7 @@ const getItems = require("./interactions/getItems");
 
 const {
     PACT_BROKER_TOKEN,
-    PACT_BROKER,
-    PACT_CONSUMER_NAME,
-    PACT_PROVIDER_NAME
+    PACT_BROKER_BASE_URL
 } = process.env;
 
 const pactFolder = `${__dirname}/pactfiles`;
@@ -21,14 +19,14 @@ const pactFolder = `${__dirname}/pactfiles`;
 // Create provider mock on localhost:8081.
 const provider = new Pact({
     dir: pactFolder,
-    consumer: PACT_CONSUMER_NAME,
-    provider: PACT_PROVIDER_NAME,
+    consumer: consumerName,
+    provider: "pact-demo-api1",
     log: `${__dirname}/test_log.txt`
 });
 
 const opts = {
     pactFilesOrDirs: [pactFolder],
-    pactBroker: PACT_BROKER,
+    pactBroker: PACT_BROKER_BASE_URL,
     pactBrokerToken: PACT_BROKER_TOKEN,
     consumerVersion,
     publishVerificationResult: true
