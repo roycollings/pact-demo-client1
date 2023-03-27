@@ -35,8 +35,8 @@ jobs:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
-      - run: ./.github/workflows/deploy.sh
+      - run: ./.github/workflows/setVersion.sh
       - uses: actions/checkout@v2
       - name: Deploy
         if: success()
-        run: ./.github/workflows/setVersion.sh
+        run: ./.github/workflows/deploy.sh
