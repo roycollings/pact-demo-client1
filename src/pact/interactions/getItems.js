@@ -12,8 +12,8 @@ module.exports = {
 
     willRespondWith: {
         status: 200,
-        body: like({
+        body: {
             "item_id": 1
-        })
+        }
     }
 };
