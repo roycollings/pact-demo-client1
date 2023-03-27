@@ -7,13 +7,19 @@
       "description": "a request for an item",
       "providerState": "Getting an item",
       "request": {
+        "matchingRules": {
+          "$.path": {
+            "match": "regex",
+            "regex": "/items/[0-9]"
+          }
+        },
         "method": "GET",
         "path": "/items/1"
       },
       "response": {
-        "body": {},
+        "body": "{\"item_id\":{\"value\":1,\"pact:matcher:type\":\"type\"}}",
         "headers": {
-          "Content-Type": "application/json"
+          "Content-Type": "application/x-www-form-urlencoded"
         },
         "status": 200
       }
