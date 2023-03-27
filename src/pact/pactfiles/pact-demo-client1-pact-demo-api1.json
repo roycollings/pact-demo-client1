@@ -23,11 +23,6 @@
         "headers": {
           "Content-Type": "application/json"
         },
-        "matchingRules": {
-          "$.body": {
-            "match": "type"
-          }
-        },
         "status": 200
       }
     },
@@ -44,11 +39,6 @@
         },
         "headers": {
           "Content-Type": "application/json"
-        },
-        "matchingRules": {
-          "$.body": {
-            "match": "type"
-          }
         },
         "status": 200
       }
