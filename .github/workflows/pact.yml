@@ -14,7 +14,7 @@ env:
   PACT_BROKER_TOKEN: ${{ secrets.PACT_BROKER_TOKEN }}
   pactfiles: ./src/pact/pactfiles
   APPLICATION_NAME: "pact-demo-client1"
-  VERSION: 1.0.0
+  VERSION: 1.0.1
   ENVIRONMENT: test
 
 jobs:
