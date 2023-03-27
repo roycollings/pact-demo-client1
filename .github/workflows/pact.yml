@@ -21,7 +21,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: ./.github/workflows/setVersion.sh
-      # - run: ./.github/workflows/publish.sh
       - uses: pactflow/actions/publish-pact-files@v1.0.1
         env:
           pactfiles: ./src/pact/pactfiles
