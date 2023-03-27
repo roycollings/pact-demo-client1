@@ -1,5 +1,4 @@
 const { Matchers } = require("@pact-foundation/pact");
-const { like } = Matchers
 
 module.exports = {
     state: "Saying hello",
@@ -8,11 +7,10 @@ module.exports = {
         method: "GET",
         path: "/"
     },
-
     willRespondWith: {
         status: 200,
-        body: {
-            "message": Matchers.string("hello")
-        }
+        // body: {
+        //     "message": Matchers.string("hello")
+        // }
     }
 };

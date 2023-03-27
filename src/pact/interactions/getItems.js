@@ -1,6 +1,4 @@
 const { Matchers } = require("@pact-foundation/pact");
-const { regex, url } = require("@pact-foundation/pact/src/v3/matchers");
-const { term, like } = Matchers;
 
 module.exports = {
     state: "Getting an item",
@@ -9,7 +7,6 @@ module.exports = {
         method: "GET",
         path: "/items/1"
     },
-
     willRespondWith: {
         status: 200,
         body: {
