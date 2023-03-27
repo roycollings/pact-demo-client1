@@ -12,7 +12,7 @@ module.exports = {
     willRespondWith: {
         status: 200,
         body: {
-            "message": "hello"
+            "message": Matchers.string()
         }
     }
 };

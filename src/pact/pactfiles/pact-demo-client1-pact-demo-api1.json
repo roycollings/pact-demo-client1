@@ -7,21 +7,20 @@
       "description": "a request for an item",
       "providerState": "Getting an item",
       "request": {
-        "matchingRules": {
-          "$.path": {
-            "match": "regex",
-            "regex": ".*/[0-9]$"
-          }
-        },
         "method": "GET",
         "path": "/items/1"
       },
       "response": {
         "body": {
-          "item_id": 1
+          "item_id": 13
         },
         "headers": {
           "Content-Type": "application/json"
+        },
+        "matchingRules": {
+          "$.body.item_id": {
+            "match": "type"
+          }
         },
         "status": 200
       }
@@ -35,10 +34,15 @@
       },
       "response": {
         "body": {
-          "message": "hello"
+          "message": "iloveorange"
         },
         "headers": {
           "Content-Type": "application/json"
+        },
+        "matchingRules": {
+          "$.body.message": {
+            "match": "type"
+          }
         },
         "status": 200
       }

@@ -7,13 +7,13 @@ module.exports = {
     uponReceiving: "a request for an item",
     withRequest: {
         method: "GET",
-        path: term({ generate: "/items/1", matcher: ".*/[0-9]$" })
+        path: "/items/1"
     },
 
     willRespondWith: {
         status: 200,
         body: {
-            "item_id": 1
+            "item_id": Matchers.integer()
         }
     }
 };
