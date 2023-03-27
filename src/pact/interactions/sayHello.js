@@ -11,7 +11,7 @@ module.exports = {
     willRespondWith: {
         status: 200,
         body: {
-            "message": Matchers.string
+            "message": Matchers.string("hello")
         }
     }
 };
