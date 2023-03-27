@@ -7,12 +7,6 @@
       "description": "a request for an item",
       "providerState": "Getting an item",
       "request": {
-        "matchingRules": {
-          "$.path": {
-            "match": "regex",
-            "regex": "/items/[0-9]"
-          }
-        },
         "method": "GET",
         "path": "/items/1"
       },
@@ -32,9 +26,16 @@
         "path": "/"
       },
       "response": {
-        "body": {},
+        "body": {
+          "message": "hello"
+        },
         "headers": {
           "Content-Type": "application/json"
+        },
+        "matchingRules": {
+          "$.body.message": {
+            "match": "type"
+          }
         },
         "status": 200
       }
