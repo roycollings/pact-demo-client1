@@ -24,9 +24,9 @@ jobs:
         PACT_BROKER_BASE_URL: ${{ secrets.PACT_BROKER_BASE_URL }}
         PACT_BROKER_TOKEN: ${{ secrets.PACT_BROKER_TOKEN }}
       volumes:
-        - ${PWD}:${PWD}
+        - ${{ github.workspace }}:${{ github.workspace }}
 
-      options: --rm
+      options: --rm -w ${{ github.workspace }}
     steps:
       - uses: actions/checkout@v2
       - run: ./.github/workflows/setVersion.sh
