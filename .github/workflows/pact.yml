@@ -14,7 +14,7 @@ env:
   PACT_BROKER_TOKEN: ${{ secrets.PACT_BROKER_TOKEN }}
   pactfiles: ./src/pact/pactfiles
   APPLICATION_NAME: "pact-demo-client1"
-  VERSION: 1.0.0
+  # VERSION: 1.0.1
   ENVIRONMENT: test
 
 jobs:
@@ -35,7 +35,8 @@ jobs:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
+      - run: ./.github/workflows/deploy.sh
       - uses: actions/checkout@v2
       - name: Deploy
         if: success()
-        run: ./.github/workflows/deploy.sh
+        run: ./.github/workflows/setVersion.sh

@@ -11,9 +11,16 @@
         "path": "/items/1"
       },
       "response": {
-        "body": {},
+        "body": {
+          "item_id": 13
+        },
         "headers": {
           "Content-Type": "application/json"
+        },
+        "matchingRules": {
+          "$.body.item_id": {
+            "match": "type"
+          }
         },
         "status": 200
       }
@@ -26,9 +33,16 @@
         "path": "/"
       },
       "response": {
-        "body": {},
+        "body": {
+          "message": "iloveorange"
+        },
         "headers": {
           "Content-Type": "application/json"
+        },
+        "matchingRules": {
+          "$.body.message": {
+            "match": "type"
+          }
         },
         "status": 200
       }
