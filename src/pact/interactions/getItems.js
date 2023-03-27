@@ -13,7 +13,7 @@ module.exports = {
     willRespondWith: {
         status: 200,
         body: {
-            "item_id": Matchers.integer()
+            "item_id": Matchers.integer(1)
         }
     }
 };
