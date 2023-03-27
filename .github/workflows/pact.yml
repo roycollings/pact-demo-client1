@@ -17,15 +17,28 @@ env:
 jobs:
   test-release:
     runs-on: ubuntu-latest
+    container:
+      image: pactfoundation/pact-cli:latest
+      env:
+        application_name: "pact-demo-client1"
+        PACT_BROKER_BASE_URL: ${{ secrets.PACT_BROKER_BASE_URL }}
+        PACT_BROKER_TOKEN: ${{ secrets.PACT_BROKER_TOKEN }}
+      volumes:
+        - ${PWD}:${PWD}
+
+      options: --rm
     steps:
       - uses: actions/checkout@v2
       - run: ./.github/workflows/setVersion.sh
-      - uses: pactflow/actions/publish-pact-files@v1.0.1
-        env:
-          pactfiles: ./src/pact/pactfiles
-      - uses: pactflow/actions/can-i-deploy@v1.0.1
-        env:
-          to: prod
+
+      - run: publish src/pact/pactfiles --consumer-app-version 1.0.0 tag-with-git-branch
+
+      #   - uses: pactflow/actions/publish-pact-files@v1.0.1
+      #     env:
+      #       pactfiles: ./src/pact/pactfiles
+      #   - uses: pactflow/actions/can-i-deploy@v1.0.1
+      #     env:
+      #       to: prod
 
   tag-release:
     if: github.event.pull_request.merged == true

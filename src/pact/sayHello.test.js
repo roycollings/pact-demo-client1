@@ -11,7 +11,7 @@ const sayHello = require("./interactions/sayHello");
 
 const {
     PACT_BROKER_TOKEN,
-    PACT_BROKER
+    PACT_BROKER_BASE_URL
 } = process.env;
 
 const pactFolder = `${__dirname}/pactfiles`;
@@ -26,7 +26,7 @@ const provider = new Pact({
 
 const opts = {
     pactFilesOrDirs: [pactFolder],
-    pactBroker: PACT_BROKER,
+    pactBroker: PACT_BROKER_BASE_URL,
     pactBrokerToken: PACT_BROKER_TOKEN,
     consumerVersion,
     publishVerificationResult: true
