@@ -9,8 +9,8 @@ module.exports = {
     },
     willRespondWith: {
         status: 200,
-        // body: {
-        //     "message": Matchers.string("hello")
-        // }
+        body: {
+            "message": Matchers.string("hello")
+        }
     }
 };
