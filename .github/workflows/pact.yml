@@ -13,26 +13,15 @@ env:
   application_name: "pact-demo-client1"
   PACT_BROKER_BASE_URL: ${{ secrets.PACT_BROKER_BASE_URL }}
   PACT_BROKER_TOKEN: ${{ secrets.PACT_BROKER_TOKEN }}
+  pactfiles: ./src/pact/pactfiles
 
 jobs:
   test-release:
     runs-on: ubuntu-latest
-    container:
-      image: pactfoundation/pact-cli:latest
-      env:
-        application_name: "pact-demo-client1"
-        PACT_BROKER_BASE_URL: ${{ secrets.PACT_BROKER_BASE_URL }}
-        PACT_BROKER_TOKEN: ${{ secrets.PACT_BROKER_TOKEN }}
-      volumes:
-        - ${{ github.workspace }}:${{ github.workspace }}
-
-      options: --rm -w ${{ github.workspace }}
     steps:
       - uses: actions/checkout@v2
       - run: ./.github/workflows/setVersion.sh
-
-      - run: publish src/pact/pactfiles --consumer-app-version 1.0.0 tag-with-git-branch
-
+      - run: ./.github/workflows/publish.sh
       #   - uses: pactflow/actions/publish-pact-files@v1.0.1
       #     env:
       #       pactfiles: ./src/pact/pactfiles
