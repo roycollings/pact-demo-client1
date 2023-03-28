@@ -16,7 +16,7 @@ env:
   APPLICATION_NAME: "pact-demo-client1"
   ENVIRONMENT: test
   # In an ideal world this would be dynamic, maybe commit sha.
-  VERSION: 1.1.0
+  VERSION: 1.1.1
 
 jobs:
   test-release:
