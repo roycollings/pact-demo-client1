@@ -25,8 +25,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: ./.github/workflows/publish.sh
-      - name: Check I can deploy
-        if: success()
+      - if: success()
         run: ./.github/workflows/can-i-deploy.sh
 
   deploy-pact-file:
@@ -34,6 +33,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Deploy
-        if: success()
-        run: ./.github/workflows/deploy.sh
+      - run: ./.github/workflows/deploy.sh
