@@ -12,7 +12,7 @@
       },
       "response": {
         "body": {
-          "item_id": 13
+          "item_id": 1
         },
         "headers": {
           "Content-Type": "application/json"
@@ -34,7 +34,7 @@
       },
       "response": {
         "body": {
-          "message": "iloveorange"
+          "message": "hello"
         },
         "headers": {
           "Content-Type": "application/json"
