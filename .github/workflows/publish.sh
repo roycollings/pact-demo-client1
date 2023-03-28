@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-BRANCH=$(git rev-parse --abbrev-ref HEAD)
-
 echo """
 PACT_BROKER_BASE_URL: $PACT_BROKER_BASE_URL
 VERSION: $VERSION
