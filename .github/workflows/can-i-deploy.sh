@@ -4,7 +4,7 @@ echo """
 PACT_BROKER_BASE_URL: $PACT_BROKER_BASE_URL
 PACT_BROKER_TOKEN: $PACT_BROKER_TOKEN
 APPLICATION_NAME: $APPLICATION_NAME
-version: $version
+VERSION: $VERSION
 ENVIRONMENT: $ENVIRONMENT
 """
 
@@ -16,5 +16,5 @@ docker run \
   pactfoundation/pact-cli:latest \
   broker can-i-deploy \
   --pacticipant "$APPLICATION_NAME" \
-  --version $version \
+  --version $VERSION \
   --to-environment $ENVIRONMENT
