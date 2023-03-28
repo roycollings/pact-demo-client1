@@ -15,7 +15,7 @@ env:
   PACTFILES: ./src/pact/pactfiles
   APPLICATION_NAME: "pact-demo-client1"
   ENVIRONMENT: test
-  VERSION: $GITHUB_SHA
+  VERSION: ${{ github.sha }}
   BRACH: $GITHUB_REF_NAME
 
 jobs:
