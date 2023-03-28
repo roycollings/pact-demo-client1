@@ -34,7 +34,7 @@
       },
       "response": {
         "body": {
-          "message": "iloveorange"
+          "message": "hello"
         },
         "headers": {
           "Content-Type": "application/json"
