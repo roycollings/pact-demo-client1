@@ -9,11 +9,6 @@ const fetchUtilities = require("../app/fetchUtilities");
 // Our interaction definitions.
 const getItems = require("./interactions/getItems");
 
-const {
-    PACT_BROKER_TOKEN,
-    PACT_BROKER_BASE_URL
-} = process.env;
-
 const pactFolder = `${__dirname}/pactfiles`;
 
 // Create provider mock on localhost:8081.
@@ -23,14 +18,6 @@ const provider = new Pact({
     provider: "pact-demo-api1",
     log: `${__dirname}/test_log.txt`
 });
-
-const opts = {
-    pactFilesOrDirs: [pactFolder],
-    pactBroker: PACT_BROKER_BASE_URL,
-    pactBrokerToken: PACT_BROKER_TOKEN,
-    consumerVersion,
-    publishVerificationResult: true
-};
 
 describe("Get an item", () => {
     let mockProviderUrl;
@@ -50,10 +37,6 @@ describe("Get an item", () => {
     afterAll(async () => {
         // Writes the pactfile.
         await provider.finalize();
-
-        // TODO: Publisher is no longer used like this (use cli instead)
-        // const publisher = new Publisher(opts);
-        // await publisher.publishPacts();
     });
 
     // Test each endpoint our consumer app uses.

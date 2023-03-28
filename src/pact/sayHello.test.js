@@ -1,18 +1,13 @@
 require("dotenv").config();
 
 const { Pact } = require("@pact-foundation/pact");
-const { version: consumerVersion, name: consumerName } = require("../../package.json");
+const { name: consumerName } = require("../../package.json");
 
-// The class / package in our app that sends requests to the provider.
+// The class / package in our app that handles interactions with the provider.
 const fetchUtilities = require("../app/fetchUtilities");
 
 // Our interaction definitions.
 const sayHello = require("./interactions/sayHello");
-
-const {
-    PACT_BROKER_TOKEN,
-    PACT_BROKER_BASE_URL
-} = process.env;
 
 const pactFolder = `${__dirname}/pactfiles`;
 
@@ -20,17 +15,11 @@ const pactFolder = `${__dirname}/pactfiles`;
 const provider = new Pact({
     dir: pactFolder,
     consumer: consumerName,
-    provider: "pact-demo-api1",
-    log: `${__dirname}/test_log.txt`
-});
+    log: `${__dirname}/test_log.txt`,
 
-const opts = {
-    pactFilesOrDirs: [pactFolder],
-    pactBroker: PACT_BROKER_BASE_URL,
-    pactBrokerToken: PACT_BROKER_TOKEN,
-    consumerVersion,
-    publishVerificationResult: true
-};
+    // This name must match the name the provider uses for PactFlow.
+    provider: "pact-demo-api1",
+});
 
 describe("Root url", () => {
     let mockProviderUrl;
@@ -50,10 +39,6 @@ describe("Root url", () => {
     afterAll(async () => {
         // Writes the pactfile.
         await provider.finalize();
-
-        // TODO: Publisher is no longer used like this (use cli instead)
-        // const publisher = new Publisher(opts);
-        // await publisher.publishPacts();
     });
 
     // Test each endpoint our consumer app uses.
