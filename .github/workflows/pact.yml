@@ -34,7 +34,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: ./.github/workflows/setVersion.sh
       - name: Deploy
         if: success()
         run: ./.github/workflows/deploy.sh
