@@ -17,7 +17,7 @@ env:
   ENVIRONMENT: test
   # In an ideal world this would be dynamic, maybe commit sha.
   VERSION: 1.1.0
-  BRACH: $GITHUB_REF_NAME
+  BRANCH: $GITHUB_REF_NAME
 
 jobs:
   test-release:
