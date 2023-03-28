@@ -15,6 +15,8 @@ env:
   PACTFILES: ./src/pact/pactfiles
   APPLICATION_NAME: "pact-demo-client1"
   ENVIRONMENT: test
+  VERSION: $GITHUB_SHA
+  BRACH: $GITHUB_REF_NAME
 
 jobs:
   test-release:
@@ -22,7 +24,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: ./.github/workflows/setVersion.sh
       - run: ./.github/workflows/publish.sh
       - name: Check I can deploy
         if: success()
